@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <!-- Google Fonds -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- js -->
+
+    <title>Easy | Pay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<body>
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message : </strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        {% endfor %}
+    </div>
+
+
+    <div class="EasyP container rounded  shadow-lg p-5 mb-5 mt-5
+    ">
+        <div>
+            <span>{{accounts.b_name}}</span><br>
+            <span>xxxxxx{{accounts.b_phone|slice:"-4:"}}</span>
+        </div>
+        <form accept="#" class=" mt-5">
+            {% csrf_token %}
+            <div class="d-flex justify-content-center">
+                <div class="">
+                    <span>ENTER 4-DIGIT UPI PIN</span><br>
+                    <input style="outline: none;
+                border-top-style: hidden;
+                border-right-style: hidden;
+                border-left-style: hidden;
+            " class="input mt-5" type="password" name="PIN" id="pin" required placeholder="PIN">
+                </div>
+            </div>
+            <div class="container mt-5 text-center">
+                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti officiis enim adipisci vitae
+                    officia, ullam quae temporibus ut eos eum a quidem consequatur sit, pariatur recusandae alias
+                    voluptatum explicabo quibusdam.</span>
+            </div>
+            <input type="text" name="" id="url-path" value="{{path}}" hidden>
+            <div id="submit" type="submit"
+                style="margin-left: 70vw; height: 60px; width: 70px; border-radius: 40px; background-color: greenyellow;"
+                class="mt-4 text-center pt-3">Done</div>
+        </form>
+
+
+    </div>
+
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+    <script>
+        $('#submit').click(function () {
+
+            var Pid = $('#pin').val();
+            let csrftoken = $('input[name=csrfmiddlewaretoken]').val();
+            let data = $('#url-path').val();
+            console.log(data);
+            let path = 'http://127.0.0.1:8000/Pnc/' + data;
+            console.log(path);
+            $.ajax({
+                type: 'POST',
+                url: path,
+                dataType: 'json',
+                data: {
+                    csrfmiddlewaretoken: csrftoken,
+                    PIN: Pid
+                },
+                success: function (response) {
+                    if (response['status'] === false) {
+                        alert("UPI PIN is incorrect!");
+                        console.log('Done')
+                    }
+                    $('#pin').val("");
+                    if (response['status'] === true) {
+                        console.log(response);
+                        window.open('http://127.0.0.1:8000/' + data, "_self");
+
+                    }
+                },
+
+                error: function (response) {
+                    console.log('response');
+                }
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

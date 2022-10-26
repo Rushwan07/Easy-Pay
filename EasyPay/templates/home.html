@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <!-- Google Fonds -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- js -->
+
+    <title>Easy | Pay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<body>
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message : </strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
+
+    <div class="EasyP container rounded shadow-lg p-5 mb-5 mt-5
+    ">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="TopL" id="logo-box"> <i id="logo" class="fa-solid fa-e fa-2x"></i> Pay</div>
+            <form id="form">
+                {% csrf_token %}
+                <div id="srch">
+                    <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+                </div>
+
+                <div id="llogo" class=" align-items-center d-none ">
+                    <i id="icon" class="fa-solid fa-magnifying-glass "></i>
+                    <input class="search ml-2" type="search" name="search" id="search"
+                        placeholder="Pay by name or phone number">
+                </div>
+
+            </form>
+            <div id="prof" class="pl-3">
+                {% if objimg %}
+                <a href="{% url 'Epay:Profile' %}" id="user-profile" class="imgd text-center " style=""><img class="img"
+                        src="/media/{{objimg}}" alt="">
+
+                </a>
+                {% else %}
+
+                <a href="{% url 'Epay:Profile' %}" id="user-profile" class="imgd text-center " style=""><img class="img"
+                        src="https://www.lootboy.de/p/wp-content/uploads/2020/12/wall-of-fame-7.png" alt="">
+
+                </a>
+                {% endif %}
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="search-results" class="EasyP container rounded shadow-lg p-5 mb-5 mt-5 d-none">
+
+    </div>
+
+    <div class="EasyP H-middle container shadow-lg p-5 mb-5 mt-5">
+        <div class="d-flex justify-content-between">
+            <div class="text-center w-25 p-2">
+                <i class="fa-solid fa-qrcode fa-2x"></i>
+                <div class="text-center">Scan any QR code</div>
+            </div>
+
+            <div class="text-center w-25 p-2">
+                <i class="fa-regular fa-id-badge fa-2x"></i>
+                <div class="text-center">Pay contacts</div>
+            </div>
+
+            <div class="text-center w-25 p-2">
+                <i class="fa-regular fa-id-badge fa-2x"></i>
+                <div class="text-center">Pay phone number</div>
+            </div>
+
+            <div class="text-center w-25 p-2">
+                <i class="fa-solid fa-building-columns fa-2x"></i>
+                <div class="text-center">Bank transfer</div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-5">
+            <div class="text-center w-25 p-2">
+                <i class="fa-solid fa-money-bill-wave fa-2x"></i>
+                <div class="text-center">Pay to UPI ID</div>
+            </div>
+
+            <div class="text-center w-25 p-2">
+                <i class="fa-solid fa-user-check fa-2x"></i>
+                <div class="text-center">Pay to Self transfer</div>
+            </div>
+
+            <div class="text-center w-25 p-2">
+                <i class="fa-solid fa-clipboard-list fa-2x"></i>
+                <div class="text-center">Pay to bills</div>
+            </div>
+
+            <div class="text-center w-25 p-2">
+                <i class="fa-solid fa-bolt fa-2x"></i>
+                <div class="text-center">Pay Mobile recharge</div>
+            </div>
+        </div>
+
+        <div class="mt-5 EasyP">
+            <h3>People</h3>
+            <div style="z-index: -1;" class="container">
+                <div id="parentpeoplediv" class="container d-flex justify-content-around p-4 flex-wrap "
+                    data-aos="fade-up" data-aos-duration="1500">
+                   
+
+                    
+
+                  
+
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <h3>Check</h3>
+            <div class="container mt-5">
+                <div class="container">
+                    <i class="fa-solid fa-clock-rotate-left fa-2x"></i>&ensp;<a href="{% url 'Epay:history' %}" class="check">Show
+                        transaction history</a>
+                </div>
+                <div class="container mt-3">
+                    <i class="fa-solid fa-building-columns fa-2x"></i>&ensp; <a href="{% url 'Epay:balance' %}"
+                        class="check">View
+                        accound balance</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    {% else %}
+    <div class="EasyP container rounded shadow-lg p-5 mb-5 mt-5
+    ">
+        <div class="TopL"> <i id="logo" class="fa-solid fa-e fa-2x"></i> Pay</div>
+        <div class="TopL mt-4"> Welcome to &ensp;<i id="logo" class="fa-solid fa-e "></i>asy Pay</div>
+
+        <span>
+            <div>
+                <div class="mt-4"> <i id="logo" class="fa-solid fa-e"></i> Pay team are promessing with you for your
+                    transactions and bank detail will safe here.</div>
+            </div>
+            <div class="text-center mt-3"><span>Login Here </span><a href="{% url 'Epay:Login' %}"
+                    class="Btn2">Login</a></div>
+        </span>
+
+    </div>
+    {% endif %}
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/e2d637a111.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+    <script>
+
+        window.onload = function () {
+            callPeopleApi();
+        };
+
+        const el = document.getElementById('form');
+        el.addEventListener('mouseover', function handleMouseOver() {
+
+            $("#logo-box").addClass('d-none');
+            $("#srch").addClass('d-none');
+            $("#llogo").removeClass('d-none');
+            $("#llogo").addClass('d-flex');
+
+            document.getElementById('icon').style.display = 'block';
+
+        });
+        el.addEventListener('mouseout', function handleMouseOut() {
+            document.getElementById('icon').style.display = 'none';
+
+            $("#logo-box").removeClass('d-none');
+            $("#srch").removeClass('d-none');
+            $("#llogo").addClass('d-none');
+            $("#llogo").removeClass('d-flex');
+
+        });
+
+
+    </script>
+
+    <script>
+        function dismisSearch() {
+            $('#search').val("");
+            $('#search-results').html("");
+            $('#search-results').addClass('d-none');
+        }
+        const searchField = document.querySelector("#search");
+        searchField.addEventListener("keyup", (e) => {
+            const searchValue = e.target.value;
+            let csrftoken = $('input[name=csrfmiddlewaretoken]').val();
+            let url = window.location.origin + '/api/query/';
+            if (searchValue.length != 0) {
+                $('#search-results').removeClass('d-none');
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    dataType: 'json',
+                    data: {
+                        'query': searchValue,
+                    },
+                    success: function (response) {
+                        $('#search-results').html(`<div class="d-flex justify-content-between"><h3> Search Results!...</h3> <div style="cursor:pointer;" onclick="dismisSearch()"><i class="fa-solid fa-xmark"></i></div></div>`);
+                        if (response.length != 0) {
+                            response.forEach(user => {
+                                $('#search-results').append(`
+                            <a href="room/`+ user.username + `" data-aos="fade-down"
+        data-aos-duration="1500" class="text-dark d-flex justify-content-between text-around  mt-5">
+                                <div class="d-flex">
+                                    <div href="profile.html" id="user-profile" class="imgd text-center"><img class="img"
+                                            src="`+ user.profile + `" alt="">
+
+                                    </div>
+                                    <div class="">
+                                        <span class="ml-3">`+ user.username + `</span><br>
+                                        <span style="opacity: 0.8;" class="ml-3">`+ user.first_name + `</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr>
+                            `);
+                            });
+                        }
+
+                        else {
+                            $('#search-results').html(`<div class="d-flex justify-content-between"><h3> No Search Results!...</h3> <div style="cursor:pointer;" onclick="dismisSearch()"><i class="fa-solid fa-xmark"></i></div></div>`);
+                        }
+                    },
+
+                    error: function (response) {
+                        console.log('response');
+                    }
+                });
+            }
+            else {
+                $('#search-results').html("");
+                $('#search-results').addClass('d-none');
+            }
+
+        });
+
+        function callPeopleApi() {
+
+            let csrftoken = $('input[name=csrfmiddlewaretoken]').val();
+            let data = $('#url-path').val();
+            console.log(data);
+            let url = window.location.origin + '/api/TransactionHistory/';
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                dataType: 'json',
+                data: {
+                    data: "hello API",
+
+                },
+                success: function (response) {
+                
+                    response.forEach(item => {
+                        $('#parentpeoplediv').append(`
+                        <div>
+                        <a href="`+'/room/'+item['user']+`" id="user-profile" class="imgd text-center mt-5"><img class="img"
+                                src="`+item['profile'] +`" alt="">
+
+                        </a>
+                        <span>`+item['user'] +`</span>
+                    </div>
+                        `);
+                    });
+                },
+
+                error: function (response) {
+                    console.log(response);
+                }
+            });
+
+        }
+    </script>
+
+</body>
+
+</html>

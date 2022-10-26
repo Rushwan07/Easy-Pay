@@ -1,0 +1,252 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}
+body {
+    /* background-color: #000000; */
+
+}
+
+.EasyP {
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+#logo {
+    color: #3EC70B;
+}
+
+.TopL {
+    font-size: 1.5rem;
+}
+
+.input {
+    width: 70vw;
+    padding: 5px;
+    outline: none;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+
+}
+
+.Btn {
+    width: 200px;
+    height: 50px;
+    border-radius: 30px;
+}
+
+.Btn:hover {
+    background-color: #3EC70B;
+    color: white;
+    transition: background-color 2s;
+
+}
+
+.Btn2:hover {
+
+    color: #3EC70B;
+    transition: background-color 2s;
+
+}
+
+.img {
+    z-index: -1;
+    width: 100%;
+}
+
+.imgd {
+    z-index: -1;
+    overflow-y: hidden;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    width: 50px;
+    height: 60px;
+}
+
+.imgs {
+    z-index: -1;
+    overflow-y: hidden;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    width: 170px;
+    height: 180px;
+}
+
+.imgd:hover {
+    box-shadow: 1px 1px 6px 5px lightblue;
+    transition: box-shadow 0.8s;
+}
+
+.middle-box {
+    border-radius: 25px;
+}
+
+.help-feed {
+    color: black;
+}
+
+.help-feed:hover {
+    color: #3EC70B;
+    text-decoration: none;
+}
+
+.H-middle {
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+}
+
+.check {
+    color: black;
+
+}
+
+.check:hover {
+    color: black;
+    text-decoration: none;
+}
+
+#nav-bar {
+    background-color: white;
+    z-index: 1;
+    position: fixed;
+    padding-top: 10vh;
+    top: 0;
+    left: 8vw;
+    width: 86%;
+    height: 20%;
+}
+
+#main-content {
+    z-index: -1;
+    margin-top: 12vh;
+}
+
+#big-container {
+    /* margin-top: 50px; */
+    min-height: 100vh;
+
+}
+
+#footer {
+    background-color: white;
+    z-index: 1;
+    padding: 3%;
+    position: fixed;
+    bottom: 0%;
+    left: 4.9vw;
+    height: 15vh;
+}
+#button{
+    width: 100px;
+    min-height: 6vh;
+    border: 2px solid black;
+    border-radius: 40px;
+    background-color: white;
+    color: black;
+  
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    
+}
+#massage-btn{
+    margin-left: 15vw;
+    border-radius: 40px;
+    width: 50vw;
+}
+#button:hover{
+    background-color: #4D77FF;
+    transition: background-color 1s;
+    cursor:pointer;
+    color: white;
+}
+#form-input{
+    outline: none;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+}
+.main-contend-one{
+    width: 40vw;
+    border-radius: 40px;
+    min-height: 10vh;
+}
+.main-contend-two{
+    position: relative;
+    left: 40vw;
+    
+    border-radius: 40px;
+    width: 40vw;
+    min-height: 10vh;
+    margin-bottom: 12vh;
+    /* margin-left: 70%; */
+}
+.main-contend-payment{
+    padding: 5px;
+    border-radius: 40px;
+    margin-bottom: 12vh;
+    width: 40vw;
+    height: inherit;
+}
+.main-contend-payment-two{
+    position: relative;
+    left: 40vw;
+    border-radius: 40px;
+    width: 40vw;
+    min-height: 10vh;
+    margin-bottom: 12vh;
+}
+
+.banks{
+    border-radius: 40px;
+    cursor:pointer;
+}
+
+.bank-block{
+    cursor:pointer;
+}
+input{
+    width:58vw;
+    outline: none;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom: 2px solid #3EC70B;
+
+}
+#srch{
+ cursor:pointer;
+ color:#3EC70B;
+
+}
+
+
+#icon{
+display:none;
+color:#3EC70B;
+}
+#search-Box{
+margin-left: 5vw;
+
+}
+.imginput
+{
+    border: none;
+}
+
+.Bold
+{
+ opacity: 0.8;
+}
+
+.imgradius
+{
+  
+    border-radius: 50%;
+}
